@@ -1,71 +1,78 @@
 public class AOTGenericReferences : UnityEngine.MonoBehaviour
 {
 
+	// {{ AOT assemblies
+	// GameFramework.dll
+	// UnityEngine.CoreModule.dll
+	// UnityGameFramework.Runtime.dll
+	// mscorlib.dll
+	// }}
+
 	// {{ constraint implement type
 	// }} 
 
-	// {{ AOT generic type
-	//GameFramework.DataTable.IDataTable`1<System.Object>
-	//GameFramework.Fsm.FsmState`1<System.Object>
-	//GameFramework.Fsm.IFsm`1<System.Object>
-	//GameFramework.GameFrameworkAction`1<System.Object>
-	//GameFramework.ObjectPool.IObjectPool`1<System.Object>
-	//GameFramework.Variable`1<System.Byte>
-	//System.Collections.Generic.Dictionary`2<System.Collections.Generic.KeyValuePair`2<Game.Hotfix.CampType,Game.Hotfix.RelationType>,System.Object>
-	//System.Collections.Generic.Dictionary`2<Game.Hotfix.GameMode,System.Object>
-	//System.Collections.Generic.Dictionary`2<System.Object,System.Byte>
-	//System.Collections.Generic.Dictionary`2<System.Collections.Generic.KeyValuePair`2<Game.Hotfix.CampType,Game.Hotfix.CampType>,Game.Hotfix.RelationType>
-	//System.Collections.Generic.Dictionary`2/Enumerator<System.Object,System.Byte>
-	//System.Collections.Generic.IEnumerator`1<System.Object>
-	//System.Collections.Generic.KeyValuePair`2<Game.Hotfix.CampType,Game.Hotfix.RelationType>
-	//System.Collections.Generic.KeyValuePair`2<Game.Hotfix.CampType,Game.Hotfix.CampType>
-	//System.Collections.Generic.KeyValuePair`2<System.Object,System.Byte>
-	//System.Collections.Generic.KeyValuePair`2<System.Int32,System.Int32>
-	//System.Collections.Generic.List`1<System.Object>
-	//System.Collections.Generic.List`1<Game.Hotfix.CampType>
-	//System.EventHandler`1<System.Object>
-	//System.Nullable`1<System.Int32>
-	//System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Object>
-	//System.Runtime.CompilerServices.TaskAwaiter`1<System.Object>
-	//System.Threading.Tasks.Task`1<System.Object>
-	//System.Threading.Tasks.TaskCompletionSource`1<System.Object>
-	//System.Threading.Tasks.TaskCompletionSource`1<System.Byte>
+	// {{ AOT generic types
+	// GameFramework.DataTable.IDataTable<object>
+	// GameFramework.Fsm.FsmState<object>
+	// GameFramework.Fsm.IFsm<object>
+	// GameFramework.GameFrameworkAction<object>
+	// GameFramework.ObjectPool.IObjectPool<object>
+	// GameFramework.Variable<byte>
+	// System.Collections.Generic.Dictionary<System.Collections.Generic.KeyValuePair<Game.Hotfix.CampType,Game.Hotfix.RelationType>,object>
+	// System.Collections.Generic.Dictionary<Game.Hotfix.GameMode,object>
+	// System.Collections.Generic.Dictionary<object,byte>
+	// System.Collections.Generic.Dictionary<System.Collections.Generic.KeyValuePair<Game.Hotfix.CampType,Game.Hotfix.CampType>,Game.Hotfix.RelationType>
+	// System.Collections.Generic.Dictionary.Enumerator<object,byte>
+	// System.Collections.Generic.IEnumerator<object>
+	// System.Collections.Generic.KeyValuePair<Game.Hotfix.CampType,Game.Hotfix.RelationType>
+	// System.Collections.Generic.KeyValuePair<Game.Hotfix.CampType,Game.Hotfix.CampType>
+	// System.Collections.Generic.KeyValuePair<object,byte>
+	// System.Collections.Generic.KeyValuePair<int,int>
+	// System.Collections.Generic.List<object>
+	// System.Collections.Generic.List<Game.Hotfix.CampType>
+	// System.EventHandler<object>
+	// System.Nullable<int>
+	// System.Runtime.CompilerServices.AsyncTaskMethodBuilder<object>
+	// System.Runtime.CompilerServices.TaskAwaiter<object>
+	// System.Threading.Tasks.Task<object>
+	// System.Threading.Tasks.TaskCompletionSource<object>
+	// System.Threading.Tasks.TaskCompletionSource<byte>
 	// }}
 
 	public void RefMethods()
 	{
-		// System.Void GameFramework.Fsm.FsmState`1<System.Object>::ChangeState<System.Object>(GameFramework.Fsm.IFsm`1<System.Object>)
-		// System.Object GameFramework.Fsm.IFsm`1<System.Object>::GetData<System.Object>(System.String)
-		// System.Void GameFramework.Fsm.IFsm`1<System.Object>::SetData<System.Object>(System.String,System.Object)
-		// System.Object GameFramework.GameFrameworkEntry::GetModule<System.Object>()
-		// System.Void GameFramework.Procedure.IProcedureManager::StartProcedure<System.Object>()
-		// System.Object GameFramework.ReferencePool::Acquire<System.Object>()
-		// System.String GameFramework.Utility/Text::Format<System.Int32>(System.String,System.Int32)
-		// System.String GameFramework.Utility/Text::Format<System.Object,System.Object,System.Object>(System.String,System.Object,System.Object,System.Object)
-		// System.String GameFramework.Utility/Text::Format<System.Object>(System.String,System.Object)
-		// System.String GameFramework.Utility/Text::Format<System.Object,System.Object>(System.String,System.Object,System.Object)
-		// System.Object[] System.Array::Empty<System.Object>()
-		// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Object>::AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter`1<System.Object>,Game.Hotfix.AwaitUtility/<AwaitLoadAssets>d__23>(System.Runtime.CompilerServices.TaskAwaiter`1<System.Object>&,Game.Hotfix.AwaitUtility/<AwaitLoadAssets>d__23&)
-		// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Object>::Start<Game.Hotfix.AwaitUtility/<AwaitLoadAssets>d__23>(Game.Hotfix.AwaitUtility/<AwaitLoadAssets>d__23&)
-		// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Object>::Start<Game.Hotfix.AwaitUtility/<AwaitLoadAsset>d__24`1<System.Object>>(Game.Hotfix.AwaitUtility/<AwaitLoadAsset>d__24`1<System.Object>&)
-		// System.Object UnityEngine.Component::GetComponent<System.Object>()
-		// System.Object UnityEngine.Component::GetComponentInParent<System.Object>()
-		// System.Void UnityEngine.Component::GetComponentsInChildren<System.Object>(System.Boolean,System.Collections.Generic.List`1<System.Object>)
-		// System.Object[] UnityEngine.Component::GetComponentsInChildren<System.Object>(System.Boolean)
-		// System.Object UnityEngine.GameObject::GetComponent<System.Object>()
-		// System.Object UnityEngine.GameObject::GetComponentInChildren<System.Object>()
-		// System.Object UnityEngine.Object::FindObjectOfType<System.Object>()
-		// System.Object UnityEngine.Object::Instantiate<System.Object>(System.Object)
-		// System.Object UnityExtension::GetOrAddComponent<System.Object>(UnityEngine.GameObject)
-		// GameFramework.DataTable.IDataTable`1<System.Object> UnityGameFramework.Runtime.DataTableComponent::GetDataTable<System.Object>()
-		// System.Boolean UnityGameFramework.Runtime.FsmComponent::DestroyFsm<System.Object>()
-		// System.Void UnityGameFramework.Runtime.Log::Error<System.Object>(System.String,System.Object)
-		// System.Void UnityGameFramework.Runtime.Log::Error<System.Object,System.Object>(System.String,System.Object,System.Object)
-		// System.Void UnityGameFramework.Runtime.Log::Error<System.Object,System.Object,System.Object>(System.String,System.Object,System.Object,System.Object)
-		// System.Void UnityGameFramework.Runtime.Log::Info<System.Object,System.Object,System.Object,System.Object>(System.String,System.Object,System.Object,System.Object,System.Object)
-		// System.Void UnityGameFramework.Runtime.Log::Info<System.Object,System.Object>(System.String,System.Object,System.Object)
-		// System.Void UnityGameFramework.Runtime.Log::Info<System.Object>(System.String,System.Object)
-		// System.Void UnityGameFramework.Runtime.Log::Warning<System.Object>(System.String,System.Object)
-		// GameFramework.ObjectPool.IObjectPool`1<System.Object> UnityGameFramework.Runtime.ObjectPoolComponent::CreateSingleSpawnObjectPool<System.Object>(System.String,System.Int32)
+		// System.Void GameFramework.Fsm.FsmState<object>.ChangeState<object>(GameFramework.Fsm.IFsm<object>)
+		// object GameFramework.Fsm.IFsm<object>.GetData<object>(string)
+		// System.Void GameFramework.Fsm.IFsm<object>.SetData<object>(string,object)
+		// object GameFramework.GameFrameworkEntry.GetModule<object>()
+		// System.Void GameFramework.Procedure.IProcedureManager.StartProcedure<object>()
+		// object GameFramework.ReferencePool.Acquire<object>()
+		// string GameFramework.Utility.Text.Format<int>(string,int)
+		// string GameFramework.Utility.Text.Format<object,object,object>(string,object,object,object)
+		// string GameFramework.Utility.Text.Format<object>(string,object)
+		// string GameFramework.Utility.Text.Format<object,object>(string,object,object)
+		// object[] System.Array.Empty<object>()
+		// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,Game.Hotfix.AwaitUtility.<AwaitLoadAssets>d__23>(System.Runtime.CompilerServices.TaskAwaiter<object>&,Game.Hotfix.AwaitUtility.<AwaitLoadAssets>d__23&)
+		// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder<object>.Start<Game.Hotfix.AwaitUtility.<AwaitLoadAssets>d__23>(Game.Hotfix.AwaitUtility.<AwaitLoadAssets>d__23&)
+		// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder<object>.Start<Game.Hotfix.AwaitUtility.<AwaitLoadAsset>d__24<object>>(Game.Hotfix.AwaitUtility.<AwaitLoadAsset>d__24<object>&)
+		// object UnityEngine.Component.GetComponent<object>()
+		// object UnityEngine.Component.GetComponentInParent<object>()
+		// System.Void UnityEngine.Component.GetComponentsInChildren<object>(bool,System.Collections.Generic.List<object>)
+		// object[] UnityEngine.Component.GetComponentsInChildren<object>(bool)
+		// object UnityEngine.GameObject.GetComponent<object>()
+		// object UnityEngine.GameObject.GetComponentInChildren<object>()
+		// object UnityEngine.Object.FindObjectOfType<object>()
+		// object UnityEngine.Object.Instantiate<object>(object)
+		// object UnityExtension.GetOrAddComponent<object>(UnityEngine.GameObject)
+		// GameFramework.DataTable.IDataTable<object> UnityGameFramework.Runtime.DataTableComponent.GetDataTable<object>()
+		// bool UnityGameFramework.Runtime.FsmComponent.DestroyFsm<object>()
+		// System.Void UnityGameFramework.Runtime.Log.Error<object>(string,object)
+		// System.Void UnityGameFramework.Runtime.Log.Error<object,object>(string,object,object)
+		// System.Void UnityGameFramework.Runtime.Log.Error<object,object,object>(string,object,object,object)
+		// System.Void UnityGameFramework.Runtime.Log.Info<object,object,object,object>(string,object,object,object,object)
+		// System.Void UnityGameFramework.Runtime.Log.Info<object,object>(string,object,object)
+		// System.Void UnityGameFramework.Runtime.Log.Info<object>(string,object)
+		// System.Void UnityGameFramework.Runtime.Log.Warning<object>(string,object)
+		// GameFramework.ObjectPool.IObjectPool<object> UnityGameFramework.Runtime.ObjectPoolComponent.CreateSingleSpawnObjectPool<object>(string,int)
 	}
 }

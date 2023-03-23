@@ -18,7 +18,7 @@ namespace Game.Editor
         private string m_GameVersion;
         private int m_InternalResourceVersion;
         private string m_OutputDirectory;
-
+        private string m_WebUrl = "http://10.192.19.30:8080/ABs/Full"; //服务器热更资源地址
         public bool ContinueOnFailure
         {
             get
@@ -71,7 +71,7 @@ namespace Game.Editor
             VersionInfo versionInfo = new VersionInfo
             {
                 ForceUpdateGame = false,
-                UpdatePrefixUri = string.Format("http://www.game.com/{0}_{1}/{2}", gameVersion, m_InternalResourceVersion.ToString(), platformPath),
+                UpdatePrefixUri = string.Format(m_WebUrl+"/{0}_{1}/{2}", gameVersion, m_InternalResourceVersion.ToString(), platformPath),
                 LatestGameVersion = m_GameVersion,
                 InternalGameVersion = 1,
                 InternalResourceVersion = m_InternalResourceVersion,
@@ -93,10 +93,10 @@ namespace Game.Editor
                 return;
             }
 
-            if (platform != Platform.Windows && platform != Platform.Windows64)
-            {
-                return;
-            }
+            // if (platform != Platform.Windows && platform != Platform.Windows64)
+            // {
+            //     return;
+            // }
 
             string streamingAssetsPath = Utility.Path.GetRegularPath(Path.Combine(Application.dataPath, "StreamingAssets"));
             string[] fileNames = Directory.GetFiles(outputPackagePath, "*", SearchOption.AllDirectories);
