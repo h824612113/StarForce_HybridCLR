@@ -71,7 +71,7 @@ namespace Game.Hotfix
             procedureManager.StartProcedure<ProcedurePreload>();
 
             // 加载自定义组件。
-            GameEntry.Resource.LoadAsset("Assets/Game/Game.prefab", new LoadAssetCallbacks(OnLoadAssetSuccess, OnLoadAssetFail));
+            GameEntry.Resource.LoadAsset("Assets/Game/Other/Game.prefab", new LoadAssetCallbacks(OnLoadAssetSuccess, OnLoadAssetFail));
         }
 
         private static void OnLoadAOTDllSuccess(string assetName, object asset, float duration, object userdata)

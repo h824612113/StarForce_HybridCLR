@@ -127,7 +127,6 @@ namespace Game.Editor
                 case Platform.Windows:
                 case Platform.Windows64:
                     return "Windows";
-
                 case Platform.MacOS:
                     return "MacOS";
 

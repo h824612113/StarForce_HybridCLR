@@ -7,8 +7,10 @@
 
 using GameFramework;
 using System.Diagnostics;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace UnityGameFramework.Editor
 {
@@ -52,7 +54,19 @@ namespace UnityGameFramework.Editor
         {
             Execute(Application.temporaryCachePath);
         }
-
+        
+        [MenuItem("Game Framework/Open Folder/ABs Data Path", false, 15)]
+        public static void OpenFolderABsPath()
+        {
+            if (Directory.Exists(Application.dataPath + "/../ABs"))
+            {
+                Execute(Application.dataPath+"/../ABs");   
+            }
+            else
+            {
+                Debug.Log(Application.dataPath+"/../ABs 文件夹不存在，请先创建！！！");
+            }
+        }
 #if UNITY_2018_3_OR_NEWER
 
         /// <summary>

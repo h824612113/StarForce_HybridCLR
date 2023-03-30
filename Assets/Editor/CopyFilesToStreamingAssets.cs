@@ -121,7 +121,7 @@ public class CopyFilesToStreamingAssets : Editor
     private static void CopyFileFromSourceToDes(int type, string from, string des)
     {
         CalculateFiles(GetPlatFormNameByType(type),from,des);
-        from = from+maxVersionFolderName+"/Windows";
+        from = from+maxVersionFolderName+"/"+GetPlatFormNameByType(type);
         Debug.Log("当前拷贝的路径是---"+from);
         // Copy files from source directory to destination directory
         foreach (string file in Directory.GetFiles(from))
