@@ -1575,6 +1575,17 @@ namespace UnityGameFramework.Runtime
             throw new NotSupportedException("GetResourceGroupCollection");
         }
 
+        public void ChangeResourceGroupReadyState(string resourceGroupName, bool isReady)
+        {
+            throw new NotSupportedException("ChangeResourceGroupReadyState");
+        }
+
+        public int GetResourceGroupAssetCountByName(string resourceGroupName)
+        {
+            throw new NotSupportedException("GetResourceGroupAssetCountByName");
+        }
+
+
         private bool HasFile(string assetName)
         {
             if (string.IsNullOrEmpty(assetName))

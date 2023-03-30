@@ -3,8 +3,13 @@ using GameFramework.Event;
 using System.Collections.Generic;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
+using GameFramework.Resource;
 using UnityEngine;
 using UnityGameFramework.Runtime;
+using ResourceUpdateChangedEventArgs = UnityGameFramework.Runtime.ResourceUpdateChangedEventArgs;
+using ResourceUpdateFailureEventArgs = UnityGameFramework.Runtime.ResourceUpdateFailureEventArgs;
+using ResourceUpdateStartEventArgs = UnityGameFramework.Runtime.ResourceUpdateStartEventArgs;
+using ResourceUpdateSuccessEventArgs = UnityGameFramework.Runtime.ResourceUpdateSuccessEventArgs;
 
 namespace Game
 {
@@ -51,7 +56,8 @@ namespace Game
                 return;
             }
 
-            StartUpdateResources(null);
+            // StartUpdateResources(null);
+            StartUpdateResources("Base");
         }
 
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
@@ -82,7 +88,7 @@ namespace Game
             ChangeState<ProcedureCodeInit>(procedureOwner);
         }
 
-        private void StartUpdateResources(object userData)
+        private void StartUpdateResources(object resourceGroupName)
         {
             if (m_UpdateResourceForm == null)
             {
@@ -90,9 +96,43 @@ namespace Game
             }
 
             Log.Info("Start update resources...");
-            GameEntry.Resource.UpdateResources(OnUpdateResourcesComplete);
+            string name = (string)(resourceGroupName);
+            GameEntry.Resource.UpdateResources(name, OnUpdateResourcesComplete);
+            
+            // bool flag = GetCurResourceGroupIsLocalComplete(name);
+            // if (!flag)
+            // {
+            //     GameEntry.Resource.UpdateResources(name, OnUpdateResourcesComplete);   
+            // }
+            // else
+            // {
+            //     m_UpdateResourcesComplete = true;
+            //     Debug.Log("资源组---"+name+"---已经下号在本地了");
+            // }
+            
+            // GameEntry.Resource.UpdateResources(OnUpdateResourcesComplete);
         }
+    
+        //判定bending资源组是否已经资源完整
+        private bool GetCurResourceGroupIsLocalComplete(string resourceGourpName)
+        {
+            bool flag = false;
+            List<IResourceGroup> results = new List<IResourceGroup>();
+            GameEntry.Resource.GetAllResourceGroups(results);
+            for (int i = 0; i < results.Count; i++)
+            {
+                if (results[i].Name == resourceGourpName)
+                {
+                    if (results[i].Ready)
+                    {
+                        flag = true;
+                        break;   
+                    }
+                }   
+            }
 
+            return flag;
+        }
         private void RefreshProgress()
         {
             long currentTotalUpdateLength = 0L;

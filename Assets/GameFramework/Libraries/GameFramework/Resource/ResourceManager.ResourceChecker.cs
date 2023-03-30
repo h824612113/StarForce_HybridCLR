@@ -9,6 +9,7 @@ using GameFramework.FileSystem;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 namespace GameFramework.Resource
 {
@@ -319,6 +320,9 @@ namespace GameFramework.Resource
                         }
 
                         SetVersionInfo(resourceName, (LoadType)resource.LoadType, resource.Length, resource.HashCode, resource.CompressedLength, resource.CompressedHashCode);
+                        //记录当前的资源组的compressedHashCode
+                        m_ResourceManager.m_oldCompressedHashCodeDic[resourceName] = resource.CompressedHashCode;
+                        m_ResourceManager.m_oldReourceGroupAssetsCountDic[resourceName] = resource.GetAssetIndexes().Length;
                         defaultResourceGroup.AddResource(resourceName, resource.Length, resource.CompressedLength);
                     }
 

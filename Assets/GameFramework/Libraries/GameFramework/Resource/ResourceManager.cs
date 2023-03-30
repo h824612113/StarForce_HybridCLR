@@ -11,6 +11,7 @@ using GameFramework.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 namespace GameFramework.Resource
 {
@@ -75,7 +76,9 @@ namespace GameFramework.Resource
         private EventHandler<ResourceUpdateSuccessEventArgs> m_ResourceUpdateSuccessEventHandler;
         private EventHandler<ResourceUpdateFailureEventArgs> m_ResourceUpdateFailureEventHandler;
         private EventHandler<ResourceUpdateAllCompleteEventArgs> m_ResourceUpdateAllCompleteEventHandler;
-
+        
+        private Dictionary<ResourceName, int> m_oldCompressedHashCodeDic = new Dictionary<ResourceName, int>();
+        private Dictionary<ResourceName, int> m_oldReourceGroupAssetsCountDic = new Dictionary<ResourceName, int>();
         /// <summary>
         /// 初始化资源管理器的新实例。
         /// </summary>
@@ -127,6 +130,8 @@ namespace GameFramework.Resource
             m_ResourceUpdateSuccessEventHandler = null;
             m_ResourceUpdateFailureEventHandler = null;
             m_ResourceUpdateAllCompleteEventHandler = null;
+            m_oldCompressedHashCodeDic.Clear();
+            m_oldReourceGroupAssetsCountDic.Clear();
         }
 
         /// <summary>
@@ -848,6 +853,43 @@ namespace GameFramework.Resource
             m_ReadOnlyFileSystems.Clear();
             m_ReadWriteFileSystems.Clear();
             m_ResourceGroups.Clear();
+            m_oldCompressedHashCodeDic.Clear();
+            m_oldReourceGroupAssetsCountDic.Clear();
+        }
+
+        // private void OnCheckerResourceNeedUpdate(ResourceName resourceName, string fileSystemName, LoadType loadType, int length, int hashCode, int compressedLength, int compressedHashCode)
+        public void ChangeResourceGroupReadyState(string resourceGroupName,bool isReady = false)
+        {
+            foreach (var item in m_ResourceInfos)
+            {
+                if (item.Key.Name == resourceGroupName)
+                {
+                    m_ResourceInfos[item.Key].MarkReady(isReady);
+                    if (m_ReadWriteResourceInfos != null)
+                    {
+                        if (m_ReadWriteResourceInfos.ContainsKey(item.Key))
+                        {
+                            m_ReadWriteResourceInfos.Remove(item.Key);      
+                        }
+                    }
+                    OnCheckerResourceNeedUpdate(item.Key,item.Value.FileSystemName,item.Value.LoadType,item.Value.Length,item.Value.HashCode,item.Value.CompressedLength,m_oldCompressedHashCodeDic[item.Key]);
+                    Debug.Log("当前的资源组==="+resourceGroupName+"-----state-----is---"+isReady);
+                    break;
+                }
+            }
+        }
+
+        public int GetResourceGroupAssetCountByName(string resourceGroupName)
+        {
+            foreach (var item in m_ResourceInfos)
+            {
+                if (item.Key.Name == resourceGroupName)
+                {
+                    return m_oldReourceGroupAssetsCountDic[item.Key];
+                }
+            }
+
+            return 0;
         }
 
         /// <summary>

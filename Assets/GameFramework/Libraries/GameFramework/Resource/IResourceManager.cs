@@ -828,5 +828,14 @@ namespace GameFramework.Resource
         /// <param name="resourceGroupNames">要获取的资源组名称的集合。</param>
         /// <returns>要获取的资源组集合。</returns>
         IResourceGroupCollection GetResourceGroupCollection(List<string> resourceGroupNames);
+        
+        /// <summary>
+        /// 改变当前资源组的状态
+        /// </summary>
+        /// <param name="resourceGroupName"></param>
+        /// <param name="isReady"></param>
+        public void ChangeResourceGroupReadyState(string resourceGroupName, bool isReady);
+
+        public int GetResourceGroupAssetCountByName(string resourceGroupName);
     }
 }

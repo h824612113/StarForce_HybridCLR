@@ -1422,6 +1422,11 @@ namespace UnityGameFramework.Runtime
             return m_ResourceManager.GetResourceGroupCollection(resourceGroupNames);
         }
 
+        public IResourceManager GetResourceManager()
+        {
+            return m_ResourceManager;
+        }
+
         /// <summary>
         /// 增加加载资源代理辅助器。
         /// </summary>

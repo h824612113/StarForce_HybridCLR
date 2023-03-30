@@ -159,9 +159,10 @@ namespace GameFramework.Resource
             /// <summary>
             /// 标记资源准备完毕。
             /// </summary>
-            public void MarkReady()
+            public void MarkReady(bool isReady = true)
             {
-                m_Ready = true;
+                // m_Ready = true;
+                m_Ready = isReady;
             }
         }
     }
