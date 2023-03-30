@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class CopyFilesToStreamingAssets : Editor
 {
-    static string sourceDirectory = Application.dataPath+"/../"+"ABs/Package";
+    static string sourcePackagedDirectory = Application.dataPath+"/../"+"ABs/Package/";
+    static string sourcePackedDirectory = Application.dataPath+"/../"+"ABs/Packed/";
     static string  destinationDirectory = Application.streamingAssetsPath;
     static string maxVersionFolderName = "0_0_0_0";
     
@@ -36,17 +37,12 @@ public class CopyFilesToStreamingAssets : Editor
             Debug.Log(destinationDirectory+"文件夹不存在");
         }
     }
-    // [MenuItem("Tools/Copy PC Files To StreamingAssets")]
-    public static void CalculateFiles()
+    public static void CalculateFiles(string platFormName,string sourcePath,string desPath)
     {
-        // Get the source directory based on the current platform
-
-        // Get the destination directory
-
-        // Delete all files in the destination directory
-        if (Directory.Exists(destinationDirectory))
+        Debug.Log("当前平台是==="+platFormName);
+        if (Directory.Exists(desPath))
         {
-            DirectoryInfo di = new DirectoryInfo(destinationDirectory);
+            DirectoryInfo di = new DirectoryInfo(desPath);
             foreach (FileInfo file in di.GetFiles())
             {
                 file.Delete();
@@ -54,11 +50,11 @@ public class CopyFilesToStreamingAssets : Editor
         }
         else
         {
-            Directory.CreateDirectory(destinationDirectory);
+            Directory.CreateDirectory(desPath);
         }
         // 删除StreamingAssets下的所有文件
-        string streamingAssetsPath = Application.streamingAssetsPath;
-        DirectoryInfo dirInfo = new DirectoryInfo(streamingAssetsPath);
+        // string streamingAssetsPath = Application.streamingAssetsPath;
+        DirectoryInfo dirInfo = new DirectoryInfo(desPath);
         foreach (FileInfo file in dirInfo.GetFiles())
         {
             file.Delete();
@@ -69,7 +65,7 @@ public class CopyFilesToStreamingAssets : Editor
         }
 
         // 找到最大版本号的文件夹
-        DirectoryInfo sourceFolder = new DirectoryInfo(sourceDirectory);
+        DirectoryInfo sourceFolder = new DirectoryInfo(sourcePath);
         DirectoryInfo[] dirs = sourceFolder.GetDirectories();
         foreach (DirectoryInfo dir in dirs)
         {
@@ -85,8 +81,12 @@ public class CopyFilesToStreamingAssets : Editor
                     int.TryParse(maxVersionParts[i], out maxVersion);
                     if (dirVersion > maxVersion)
                     {
-                        maxVersionFolderName = dir.Name;
-                        break;
+                        Debug.Log("当前的dir---"+dir);
+                        if(Directory.Exists(dir+"/"+platFormName))
+                        {
+                            maxVersionFolderName = dir.Name;
+                            break;   
+                        }
                     }
                 }
             }
@@ -94,53 +94,40 @@ public class CopyFilesToStreamingAssets : Editor
         Debug.Log("当前最大的版本号是----"+maxVersionFolderName);
     }
 
-    [MenuItem("Tools/Copy Files To StreamingAssets/Win")]
-    public static void CopyPCWinFiles()
+    public static string GetPlatFormNameByType(int type)
     {
-        CalculateFiles();
-        sourceDirectory = Application.dataPath+"/../"+"ABs/Package/"+maxVersionFolderName+"/Windows";
-        Debug.Log("当前拷贝的路径是---"+sourceDirectory);
-        // Copy files from source directory to destination directory
-        foreach (string file in Directory.GetFiles(sourceDirectory))
+        string name = "";
+        switch (type)
         {
-            string fileName = Path.GetFileName(file);
-            string dest = Path.Combine(destinationDirectory, fileName);
-            File.Copy(file, dest, true);
+            case 1:
+                name = "Windows";
+                break;
+            case 2:
+                name = "Windows64";
+                break;
+            case 3:
+                name = "IOS";
+                break;
+            case 4:
+                name = "Android";
+                break;
+            default:
+                break;
         }
 
-        // Refresh asset database to reflect the changes
-        AssetDatabase.Refresh();
+        return name;
     }
-    
-    [MenuItem("Tools/Copy Files To StreamingAssets/Win64")]
-    public static void CopyPCWin64Files()
-    {
-        CalculateFiles();
-        sourceDirectory = Application.dataPath+"/../"+"ABs/Package/"+maxVersionFolderName+"/Windows64";
-        Debug.Log("当前拷贝的路径是---"+sourceDirectory);
-        // Copy files from source directory to destination directory
-        foreach (string file in Directory.GetFiles(sourceDirectory))
-        {
-            string fileName = Path.GetFileName(file);
-            string dest = Path.Combine(destinationDirectory, fileName);
-            File.Copy(file, dest, true);
-        }
 
-        // Refresh asset database to reflect the changes
-        AssetDatabase.Refresh();
-    }
-    
-    [MenuItem("Tools/Copy Files To StreamingAssets/IOS")]
-    public static void CopyIOSFiles()
+    private static void CopyFileFromSourceToDes(int type, string from, string des)
     {
-        CalculateFiles();
-        sourceDirectory = Application.dataPath+"/../"+"ABs/Package/"+maxVersionFolderName+"/IOS";
-        Debug.Log("当前拷贝的路径是---"+sourceDirectory);
+        CalculateFiles(GetPlatFormNameByType(type),from,des);
+        from = from+maxVersionFolderName+"/Windows";
+        Debug.Log("当前拷贝的路径是---"+from);
         // Copy files from source directory to destination directory
-        foreach (string file in Directory.GetFiles(sourceDirectory))
+        foreach (string file in Directory.GetFiles(from))
         {
             string fileName = Path.GetFileName(file);
-            string dest = Path.Combine(destinationDirectory, fileName);
+            string dest = Path.Combine(des, fileName);
             File.Copy(file, dest, true);
         }
 
@@ -148,21 +135,57 @@ public class CopyFilesToStreamingAssets : Editor
         AssetDatabase.Refresh();
     }
 
-    [MenuItem("Tools/Copy Files To StreamingAssets/Android")]
-    public static void CopyAndroidFiles()
-    {
-        CalculateFiles();
-        sourceDirectory = Application.dataPath+"/../"+"ABs/Package/"+maxVersionFolderName+"/Android";
-        Debug.Log("当前拷贝的路径是---"+sourceDirectory);
-        // Copy files from source directory to destination directory
-        foreach (string file in Directory.GetFiles(sourceDirectory))
+    #region Copy Packed Files To StreamingAssets
+
+        [MenuItem("Tools/Copy Files To StreamingAssets/Packed/Win")]
+        public static void CopyPCPackedWinFiles()
         {
-            string fileName = Path.GetFileName(file);
-            string dest = Path.Combine(destinationDirectory, fileName);
-            File.Copy(file, dest, true);
+            CopyFileFromSourceToDes(1, sourcePackedDirectory, destinationDirectory);
         }
 
-        // Refresh asset database to reflect the changes
-        AssetDatabase.Refresh();
-    }
+        [MenuItem("Tools/Copy Files To StreamingAssets/Packed/Win64")]
+        public static void CopyPCPackedWin64Files()
+        {
+            CopyFileFromSourceToDes(2, sourcePackedDirectory, destinationDirectory);
+        }
+        
+        [MenuItem("Tools/Copy Files To StreamingAssets/Packed/IOS")]
+        public static void CopyIOSPackedFiles()
+        {
+            CopyFileFromSourceToDes(3, sourcePackedDirectory, destinationDirectory);
+        }
+
+        [MenuItem("Tools/Copy Files To StreamingAssets/Packed/Android")]
+        public static void CopyAndroidPackedFiles()
+        {
+            CopyFileFromSourceToDes(4, sourcePackedDirectory, destinationDirectory);
+        }
+
+    #endregion
+
+    #region Copy Package File To StreamingAssets
+        [MenuItem("Tools/Copy Files To StreamingAssets/Package/Win")]
+        public static void CopyPCPackageWinFiles()
+        {
+            CopyFileFromSourceToDes(1, sourcePackagedDirectory, destinationDirectory);
+        }
+
+        [MenuItem("Tools/Copy Files To StreamingAssets/Package/Win64")]
+        public static void CopyPCPackageWin64Files()
+        {
+            CopyFileFromSourceToDes(2, sourcePackagedDirectory, destinationDirectory);
+        }
+        
+        [MenuItem("Tools/Copy Files To StreamingAssets/Package/IOS")]
+        public static void CopyIOSPackageFiles()
+        {
+            CopyFileFromSourceToDes(3, sourcePackagedDirectory, destinationDirectory);
+        }
+
+        [MenuItem("Tools/Copy Files To StreamingAssets/Package/Android")]
+        public static void CopyAndroidPackageFiles()
+        {
+            CopyFileFromSourceToDes(4, sourcePackagedDirectory, destinationDirectory);
+        }
+    #endregion
 }
