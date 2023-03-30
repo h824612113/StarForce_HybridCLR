@@ -2,7 +2,7 @@
 <UnityGameFramework>
   <ResourceBuilder>
     <Settings>
-      <InternalResourceVersion>18</InternalResourceVersion>
+      <InternalResourceVersion>19</InternalResourceVersion>
       <Platforms>1</Platforms>
       <AssetBundleCompression>0</AssetBundleCompression>
       <CompressionHelperTypeName>UnityGameFramework.Runtime.DefaultCompressionHelper</CompressionHelperTypeName>
