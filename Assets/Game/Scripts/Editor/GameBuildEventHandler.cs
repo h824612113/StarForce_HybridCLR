@@ -81,7 +81,7 @@ namespace Game.Editor
                 VersionListCompressedHashCode = versionListCompressedHashCode,
             };
             string versionJson = LitJson.JsonMapper.ToJson(versionInfo);
-            IOUtility.SaveFileSafe(m_OutputDirectory, platformPath + "Version.txt", versionJson);
+            IOUtility.SaveFileSafe(m_OutputDirectory+"/Full"+string.Format("/{0}_{1}/", gameVersion, m_InternalResourceVersion.ToString()), platformPath + "Version.txt", versionJson);
 
             Debug.LogFormat("Version save success. \n length is {0} , hash code is {1} . \n compressed length is {2} , compressed hash code is {3} . \n list path is {4} \n ", versionListLength, versionListHashCode, versionListCompressedLength, versionListCompressedHashCode, versionListPath);
         }
