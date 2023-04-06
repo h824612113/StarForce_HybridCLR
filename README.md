@@ -2,6 +2,7 @@
 
 使用 HybridCLR 对 StarForce 实现热更新。将 StarForce 的游戏逻辑剔除，可以得到一个接入了 HybridCLR 的 GameFramework。可 fork 此仓库使用 👉  [UnityGameFramework](https://github.com/GREAT1217/UnityGameFramework) 
 
+[博客地址](https://blog.csdn.net/h824612113/article/details/129298155)
 ### 更新日志
 >在大佬的基础上进行后续修改[StarForce_HybridCLR](https://github.com/GREAT1217/StarForce_HybridCLR)
 
