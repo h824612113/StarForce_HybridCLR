@@ -10,15 +10,6 @@
     <String Key="Menu.SettingButton" Value="設置" />
     <String Key="Menu.AboutButton" Value="關於" />
     <String Key="Menu.QuitButton" Value="退出" />
-    <String Key="Dialog.ConfirmButton" Value="確定" />
-    <String Key="Dialog.CancelButton" Value="取消" />
-    <String Key="Dialog.OtherButton" Value="" />
-    <String Key="ForceUpdate.Title" Value="強制更新" />
-    <String Key="ForceUpdate.Message" Value="當前遊戲版本過舊，是否前往更新？" />
-    <String Key="ForceUpdate.UpdateButton" Value="更新" />
-    <String Key="ForceUpdate.QuitButton" Value="退出" />
-    <String Key="AskQuitGame.Title" Value="確認退出" />
-    <String Key="AskQuitGame.Message" Value="是否確認退出遊戲？" />
     <String Key="Setting.Title" Value="設置" />
     <String Key="Setting.Music" Value="音樂" />
     <String Key="Setting.Sound" Value="音效" />

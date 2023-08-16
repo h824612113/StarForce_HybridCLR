@@ -10,15 +10,6 @@
     <String Key="Menu.SettingButton" Value="설정" />
     <String Key="Menu.AboutButton" Value="정보" />
     <String Key="Menu.QuitButton" Value="아웃" />
-    <String Key="Dialog.ConfirmButton" Value="확인" />
-    <String Key="Dialog.CancelButton" Value="취소" />
-    <String Key="Dialog.OtherButton" Value="" />
-    <String Key="ForceUpdate.Title" Value="필수 업데이트" />
-    <String Key="ForceUpdate.Message" Value="새로운 게임 버전이 있는데 업데이트를 원하십니까?" />
-    <String Key="ForceUpdate.UpdateButton" Value="업데이트" />
-    <String Key="ForceUpdate.QuitButton" Value="아웃" />
-    <String Key="AskQuitGame.Title" Value="아웃 확인" />
-    <String Key="AskQuitGame.Message" Value="게임 로그아웃을 원하십니까?" />
     <String Key="Setting.Title" Value="설정" />
     <String Key="Setting.Music" Value="음악" />
     <String Key="Setting.Sound" Value="효과음" />
